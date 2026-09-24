@@ -1,8 +1,8 @@
 import { Pressable } from "react-native";
 
+import { FAVORITE_COLOR } from "@/constants/theme";
 import { useFavoritesStore, useIsFavorite } from "@/features/favorites";
 import { Heart } from "@/lib/icons";
-import { cn } from "@/lib/utils";
 
 type FavoriteButtonProps = {
   characterId: number;
@@ -20,11 +20,11 @@ export function FavoriteButton({ characterId }: FavoriteButtonProps) {
       accessibilityRole="button"
       accessibilityLabel={isFavorite ? "Remove from favorites" : "Add to favorites"}
     >
-      <Heart
-        className={cn(isFavorite ? "text-red-500" : "text-foreground")}
-        fill={isFavorite ? "currentColor" : "none"}
-        size={24}
-      />
+      {isFavorite ? (
+        <Heart color={FAVORITE_COLOR} fill={FAVORITE_COLOR} size={24} />
+      ) : (
+        <Heart className="text-foreground" size={24} />
+      )}
     </Pressable>
   );
 }

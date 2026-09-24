@@ -11,6 +11,12 @@ type TabIconProps = {
   size: number;
 };
 
+const TAB_SCREEN_OPTIONS = {
+  headerShown: false,
+  tabBarStyle: { borderTopWidth: 0, elevation: 0 },
+  tabBarLabelStyle: { fontFamily: "Inter_600SemiBold", fontSize: 11 },
+} as const;
+
 function renderCharactersIcon({ color, size }: TabIconProps) {
   return <Users color={color} size={size} />;
 }
@@ -25,7 +31,7 @@ function renderSettingsIcon({ color, size }: TabIconProps) {
 
 export default function TabLayout() {
   return (
-    <Tabs>
+    <Tabs screenOptions={TAB_SCREEN_OPTIONS}>
       <Tabs.Screen
         name="index"
         options={{ title: "Characters", tabBarIcon: renderCharactersIcon }}

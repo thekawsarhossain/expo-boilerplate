@@ -44,7 +44,7 @@ export function CharacterGrid({
       numColumns={CHARACTER_GRID_COLUMNS}
       renderItem={renderCharacter}
       keyExtractor={keyExtractorById}
-      contentContainerClassName="p-2.5"
+      contentContainerClassName="px-3.5 pb-8"
       showsVerticalScrollIndicator={false}
       refreshing={isRefreshing}
       onRefresh={onRefresh}

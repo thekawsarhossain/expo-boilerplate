@@ -10,7 +10,7 @@ type SearchInputProps = {
 
 export function SearchInput({ value, onChangeText, placeholder = "Search" }: SearchInputProps) {
   return (
-    <View className="h-11 flex-row items-center gap-2 rounded-full border border-input bg-card px-4">
+    <View className="h-12 flex-row items-center gap-2.5 rounded-2xl bg-secondary px-4">
       <Search className="text-muted-foreground" size={18} />
       <TextInput
         value={value}

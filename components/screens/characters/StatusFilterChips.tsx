@@ -24,13 +24,18 @@ function FilterChip({ label, isSelected, onPress }: FilterChipProps) {
     <Pressable
       onPress={onPress}
       className={cn(
-        "rounded-full border px-4 py-1.5 active:opacity-80",
-        isSelected ? "border-primary bg-primary" : "border-border bg-background",
+        "rounded-full px-4 py-2 active:opacity-80",
+        isSelected ? "bg-primary" : "bg-secondary",
       )}
       accessibilityRole="button"
       accessibilityState={{ selected: isSelected }}
     >
-      <Text className={cn("text-sm", isSelected ? "text-primary-foreground" : "text-foreground")}>
+      <Text
+        className={cn(
+          "text-sm font-semibold",
+          isSelected ? "text-primary-foreground" : "text-muted-foreground",
+        )}
+      >
         {label}
       </Text>
     </Pressable>

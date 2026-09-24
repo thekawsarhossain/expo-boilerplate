@@ -18,11 +18,11 @@ export function CharacterFilters({
   onStatusChange,
 }: CharacterFiltersProps) {
   return (
-    <View className="gap-3 border-b border-border bg-background px-4 pb-3 pt-2">
+    <View className="gap-3">
       <SearchInput
         value={searchText}
         onChangeText={onSearchTextChange}
-        placeholder="Search characters"
+        placeholder="Search the multiverse"
       />
       <StatusFilterChips selectedStatus={selectedStatus} onStatusChange={onStatusChange} />
     </View>

@@ -7,7 +7,7 @@ import type { Character } from "@/features/characters";
 import { type Episode, useEpisodesByIds } from "@/features/episodes";
 import { getIdFromUrl, isDefined, keyExtractorById } from "@/lib/utils";
 import { CharacterHero } from "./CharacterHero";
-import { CharacterInfoList } from "./CharacterInfoList";
+import { CharacterInfoTiles } from "./CharacterInfoTiles";
 import { EpisodeRow } from "./EpisodeRow";
 import { EpisodesFallback } from "./EpisodesFallback";
 
@@ -37,12 +37,17 @@ export function CharacterDetails({ character }: CharacterDetailsProps) {
       keyExtractor={keyExtractorById}
       ItemSeparatorComponent={EpisodeSeparator}
       className="bg-background"
-      contentContainerClassName="pb-8"
+      contentContainerClassName="pb-10"
       ListHeaderComponent={
-        <View className="gap-6 px-4 pb-2">
+        <View className="gap-6 p-4">
           <CharacterHero character={character} />
-          <CharacterInfoList character={character} />
-          <Text className="text-lg font-semibold">Episodes ({episodeIds.length})</Text>
+          <CharacterInfoTiles character={character} />
+          <View className="flex-row items-center gap-2">
+            <Text className="text-xl font-bold tracking-tight">Episodes</Text>
+            <View className="rounded-full bg-primary px-2 py-0.5">
+              <Text className="text-xs font-bold text-primary-foreground">{episodeIds.length}</Text>
+            </View>
+          </View>
         </View>
       }
       ListEmptyComponent={<EpisodesFallback isPending={isPending} error={error} onRetry={refetch} />}

@@ -110,11 +110,11 @@ For JavaScript and TypeScript changes you never need to rebuild.
 │   ├── primitives/               Unstyled building blocks (behavior + accessibility)
 │   ├── ui/                       Styled design-system components (Button, Input, Card, Skeleton, ...)
 │   ├── shared/                   Generic, domain-free app components
-│   │                             (Loader, ErrorView, EmptyView, SearchInput, toast/, ...)
+│   │                             (ScreenHeader, Loader, ErrorView, EmptyView, SearchInput, toast/, ...)
 │   └── screens/                  Sub-components of each screen, one folder per screen
 │       ├── characters/           CharacterFilters, CharacterGrid, CharacterCard, ... (+ skeletons)
 │       ├── character-detail/     CharacterDetails, CharacterHero, EpisodeRow, ... (+ skeletons)
-│       └── settings/             ThemeItem, NotificationItem, ClearCacheItem
+│       └── settings/             SettingsSection, SettingsRow, ThemeSelector, AppInfoCard, ...
 │
 ├── features/                     Domain logic, one folder per feature. No components
 │   ├── characters/
@@ -131,6 +131,7 @@ For JavaScript and TypeScript changes you never need to rebuild.
 │   ├── api/                      http-client.ts (axios), api-error.ts
 │   ├── query/                    Query client, SQLite persister, online/focus managers
 │   ├── storage/                  MMKV + zustand adapter
+│   ├── theme/                    Theme switch crossfade (snapshot + transition store)
 │   ├── toast/                    toast.success() / toast.error() / toast.info()
 │   ├── utils/                    Pure helpers (cn, keyExtractorById, pagination, ...)
 │   └── icons/                    Lucide icons wired up for className

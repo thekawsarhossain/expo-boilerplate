@@ -9,7 +9,7 @@ const cellStyle = { width: `${100 / CHARACTER_GRID_COLUMNS}%` } as const;
 export function CharacterGridSkeleton() {
   return (
     <View
-      className="flex-1 flex-row flex-wrap content-start bg-background p-2.5"
+      className="flex-1 flex-row flex-wrap content-start bg-background px-3.5"
       accessibilityLabel="Loading characters"
     >
       {range(CHARACTER_SKELETON_COUNT).map((index) => (

@@ -3,6 +3,7 @@ import { View } from "react-native";
 
 import { CharacterFilters } from "@/components/screens/characters/CharacterFilters";
 import { CharacterResultsContent } from "@/components/screens/characters/CharacterResultsContent";
+import { ScreenHeader } from "@/components/shared/ScreenHeader";
 import { SEARCH_DEBOUNCE_MS } from "@/constants/ui";
 import type { CharacterStatus } from "@/features/characters";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
@@ -33,12 +34,14 @@ export default function CharactersScreen() {
 
   return (
     <View className="flex-1 bg-background">
-      <CharacterFilters
-        searchText={filters.searchText}
-        onSearchTextChange={handleSearchTextChange}
-        selectedStatus={filters.status}
-        onStatusChange={handleStatusChange}
-      />
+      <ScreenHeader title="Characters" subtitle="Everyone across the multiverse">
+        <CharacterFilters
+          searchText={filters.searchText}
+          onSearchTextChange={handleSearchTextChange}
+          selectedStatus={filters.status}
+          onStatusChange={handleStatusChange}
+        />
+      </ScreenHeader>
       <CharacterResultsContent filters={queryFilters} />
     </View>
   );

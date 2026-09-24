@@ -15,25 +15,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: 📦 Checkout project repo
+      - name: Checkout project repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: 📦 Setup Node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
-      - name: 📦 Install deps
+      - name: Install deps
         run: npm ci
 
-      - name: ⚙️ Run build
+      - name: Run build
         run: npm run build:web
         shell: bash
 
-      - name: 📱 Publish web app
+      - name: Publish web app
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

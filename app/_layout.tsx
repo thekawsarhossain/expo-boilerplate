@@ -6,14 +6,17 @@ import { ThemeProvider } from "@react-navigation/native";
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
+import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import { PortalHost } from "@/components/primitives/portal";
+import { ThemeTransitionOverlay } from "@/components/shared/ThemeTransitionOverlay";
 import { ToastViewport } from "@/components/shared/toast";
 import { DARK_THEME, LIGHT_THEME } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useRestoreThemePreference } from "@/hooks/useRestoreThemePreference";
 import { setAndroidNavigationBar } from "@/lib/android-navigation-bar";
+import { themeSnapshotRootRef } from "@/lib/theme/theme-snapshot-root";
 import { QueryProvider } from "@/providers/QueryProvider";
 
 export { ErrorBoundary } from "expo-router";
@@ -41,16 +44,19 @@ export default function RootLayout() {
   return (
     <QueryProvider>
       <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-        <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+        <StatusBar style={isDarkColorScheme ? "light" : "dark"} animated />
         <GestureHandlerRootView style={{ flex: 1 }}>
           <BottomSheetModalProvider>
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen
-                name="characters/[id]"
-                options={{ title: "", headerBackButtonDisplayMode: "minimal" }}
-              />
-            </Stack>
+            <View ref={themeSnapshotRootRef} collapsable={false} className="flex-1">
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen
+                  name="characters/[id]"
+                  options={{ title: "", headerBackButtonDisplayMode: "minimal", headerShadowVisible: false }}
+                />
+              </Stack>
+            </View>
+            <ThemeTransitionOverlay />
             <ToastViewport />
           </BottomSheetModalProvider>
         </GestureHandlerRootView>

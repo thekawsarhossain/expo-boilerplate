@@ -1,11 +1,11 @@
 import { useQueryClient } from "@tanstack/react-query";
 
-import ListItem from "@/components/ui/list-item";
 import { queryPersister } from "@/lib/query/query-persister";
 import { toast } from "@/lib/toast";
 import { Trash2 } from "@/lib/icons";
+import { SettingsRow } from "./SettingsRow";
 
-export function ClearCacheItem() {
+export function ClearCacheRow() {
   const queryClient = useQueryClient();
 
   async function clearCache() {
@@ -15,10 +15,10 @@ export function ClearCacheItem() {
   }
 
   return (
-    <ListItem
-      itemLeft={(props) => <Trash2 {...props} />}
+    <SettingsRow
+      icon={<Trash2 className="text-primary" size={18} />}
       label="Clear cached data"
-      detail={false}
+      description="Frees space and refetches everything"
       onPress={clearCache}
     />
   );

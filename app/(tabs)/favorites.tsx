@@ -1,35 +1,20 @@
-import { CharacterGrid } from "@/components/screens/characters/CharacterGrid";
-import { CharacterGridSkeleton } from "@/components/screens/characters/CharacterGridSkeleton";
-import { EmptyView } from "@/components/shared/EmptyView";
-import { ErrorView } from "@/components/shared/ErrorView";
-import { useCharactersByIds } from "@/features/characters";
+import { View } from "react-native";
+
+import { FavoriteCharactersContent } from "@/components/screens/favorites/FavoriteCharactersContent";
+import { ScreenHeader } from "@/components/shared/ScreenHeader";
 import { useFavoritesStore } from "@/features/favorites";
-import { useRefreshByUser } from "@/hooks/useRefreshByUser";
-import { Heart } from "@/lib/icons";
+
+function getSavedCountLabel(count: number) {
+  return count === 1 ? "1 character saved" : `${count} characters saved`;
+}
 
 export default function FavoritesScreen() {
   const favoriteIds = useFavoritesStore((state) => state.favoriteIds);
-  const { data: characters = [], error, isPending, refetch } = useCharactersByIds(favoriteIds);
-  const { isRefreshingByUser, refreshByUser } = useRefreshByUser(refetch);
-
-  if (!favoriteIds.length) {
-    return (
-      <EmptyView
-        icon={<Heart className="text-muted-foreground" size={32} />}
-        title="No favorites yet"
-        description="Tap the heart on a character to save it here."
-      />
-    );
-  }
-
-  if (isPending) return <CharacterGridSkeleton />;
-  if (error && !characters.length) return <ErrorView error={error} onRetry={refetch} />;
 
   return (
-    <CharacterGrid
-      characters={characters}
-      isRefreshing={isRefreshingByUser}
-      onRefresh={refreshByUser}
-    />
+    <View className="flex-1 bg-background">
+      <ScreenHeader title="Favorites" subtitle={getSavedCountLabel(favoriteIds.length)} />
+      <FavoriteCharactersContent favoriteIds={favoriteIds} />
+    </View>
   );
 }
